@@ -21,3 +21,8 @@
   (let [invoice-date (ft/unparse date-formatter (:date invoice))
         due-date (ft/unparse date-formatter (:date_due invoice))]
     (request :invoice_create api-keys (merge invoice {:items invoice-rows, :customer customer, :date invoice-date, :date_due due-date}))))
+
+(defn show-invoice
+  ([api-keys invoice-id] (show-invoice api-keys invoice-id false))
+  ([api-keys invoice-id fetch-attachments]
+   (request :invoice_show api-keys invoice-id fetch-attachments)))
