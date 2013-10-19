@@ -1,6 +1,8 @@
 # clj-maventa
 
-A Clojure library designed to ... well, that part is up to you.
+A Clojure library for communicating with the [Maventa](http://www.maventa.com/) API.
+
+Please note this is an early stage project that might change a lot.
 
 ## Usage
 
@@ -13,7 +15,6 @@ A Clojure library designed to ... well, that part is up to you.
 
 ## License
 
-Copyright © 2013 FIXME
+Copyright © 2013 Niklas Närhinen <niklas@narhinen.net>
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or any later version.

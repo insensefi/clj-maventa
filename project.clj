@@ -8,4 +8,4 @@
                  [environ "0.4.0"]
                  [necessary-evil "2.0.0"]]
   :plugins [[s3-wagon-private "1.1.2"]]
-  :repositories [["private" {:url "s3p://insense.clojars/releases/" :creds :gpg}]])
+  :repositories [["snapshots" {:url "s3p://insense.clojars/snapshots/" :creds :gpg}]])
