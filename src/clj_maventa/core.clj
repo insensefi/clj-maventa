@@ -4,10 +4,13 @@
             [clj-time [format :as ft]]))
 
 (def vendor-key (environ/env :maventa-vendor-api-key)) 
+(def endpoint (if (= (environ/env :environment) "PRODUCTION")
+                "https://secure.maventa.com/apis/denver/api"
+                "https://testing.maventa.com/apis/denver/api"))
 
 (defn- request
   [method api-keys & other]
-  (apply xml-rpc/call "https://testing.maventa.com/apis/denver/api" method (merge {:vendor_api_key vendor-key} api-keys) other))
+  (apply xml-rpc/call endpoint method (merge {:vendor_api_key vendor-key} api-keys) other))
 
 
 (defn company-info
