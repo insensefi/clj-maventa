@@ -8,6 +8,8 @@
                 "https://secure.maventa.com/apis/denver/api"
                 "https://testing.maventa.com/apis/denver/api"))
 
+(println "clj-maventa using endpoint " endpoint)
+
 (defn- request
   [method api-keys & other]
   (apply xml-rpc/call endpoint method (merge {:vendor_api_key vendor-key} api-keys) other))
@@ -19,6 +21,8 @@
 
 (def date-formatter (ft/formatter "yyyyMMdd"))
 
+(def date-time-formatter (ft/formatter "yyyyMMddHHmmss"))
+
 (defn create-invoice
   [api-keys customer invoice invoice-rows]
   (let [invoice-date (ft/unparse date-formatter (:date invoice))
@@ -29,3 +33,7 @@
   ([api-keys invoice-id] (show-invoice api-keys invoice-id false))
   ([api-keys invoice-id fetch-attachments]
    (request :invoice_show api-keys invoice-id fetch-attachments)))
+
+(defn list-inbound-invoices
+  [api-keys start-timestamp end-timestamp]
+  (request :invoice_list_inbound_between_dates api-keys (ft/unparse date-time-formatter start-timestamp) (ft/unparse date-time-formatter end-timestamp)))
