@@ -6,7 +6,7 @@
 (def vendor-key (environ/env :maventa-vendor-api-key)) 
 (def endpoint (if (= (environ/env :environment) "PRODUCTION")
                 "https://secure.maventa.com/apis/denver/api"
-                "https://testing.maventa.com/apis/denver/api"))
+                "https://secure.maventa.com/apis/denver/api"))
 
 (println "clj-maventa using endpoint " endpoint)
 
@@ -37,3 +37,11 @@
 (defn list-inbound-invoices
   [api-keys start-timestamp end-timestamp]
   (request :invoice_list_inbound_between_dates api-keys (ft/unparse date-time-formatter start-timestamp) (ft/unparse date-time-formatter end-timestamp)))
+
+(defn show-inbound-invoice
+  [api-keys invoice-id]
+  (request :inbound_invoice_show api-keys invoice-id true))
+
+(defn accept-invoice
+  [api-keys invoice-id]
+  (request :invoice_accept api-keys invoice-id))
