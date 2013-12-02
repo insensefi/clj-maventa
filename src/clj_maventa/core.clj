@@ -6,7 +6,7 @@
 (def vendor-key (environ/env :maventa-vendor-api-key)) 
 (def endpoint (if (= (environ/env :environment) "PRODUCTION")
                 "https://secure.maventa.com/apis/denver/api"
-                "https://secure.maventa.com/apis/denver/api"))
+                "https://testing.maventa.com/apis/denver/api"))
 
 (println "clj-maventa using endpoint " endpoint)
 
